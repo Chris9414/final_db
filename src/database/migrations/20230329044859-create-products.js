@@ -21,13 +21,9 @@ module.exports = {
         type: Sequelize.FLOAT,
         allowNull: false
       },
-      availableQty: {
+      quantity: {
         type: Sequelize.INTEGER,
         allowNull: false
-      },
-      available: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: true
       },
       userId: {
         type: Sequelize.INTEGER,
@@ -35,8 +31,7 @@ module.exports = {
         references: {
           model: "Users",
           key: "id"
-        },
-        field: "user_id"
+        }
       },
       productImg: {
         type: Sequelize.STRING,

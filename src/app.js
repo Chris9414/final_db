@@ -1,5 +1,6 @@
 const express = require('express');
 const ApiRoutes = require('./routes');
+const errorHandlerRouter = require('./routes/errorHandler.routes');
 
 require("dotenv").config();
 
@@ -15,9 +16,7 @@ app.get("/", (req,res) => {
     res.send("Hola Mundo")
 });
 
-app.use((error, req, res, next) => {
-    res.status(400).json(error);
-  });
+errorHandlerRouter(app);
 
 app.listen(PORT, () => {
     console.log(`Servidor escuchando en el puerto ${PORT}`);

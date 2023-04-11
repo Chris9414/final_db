@@ -37,6 +37,18 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
+    },  {
+      hooks: {
+        beforeCreate: async (user) => {
+          try {
+            const salt = await bcrypt.genSalt(10);
+            const passwordHash = await bcrypt.hash(user.password, salt);
+            user.password = passwordHash;
+          } catch (error) {
+            throw error;
+          }
+        },
+      },
     });
   },
   async down(queryInterface, Sequelize) {

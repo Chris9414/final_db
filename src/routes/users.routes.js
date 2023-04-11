@@ -1,15 +1,16 @@
 const {Router} = require('express');
-const {createUser, updateUser} = require('../controllers/users.contoller')
+const {createUser, updateUser, getUserCar} = require('../controllers/users.contoller')
+const {createUserValidator, updateUserValidator} = require('../database/validators/users.vaidators')
 
 const router = Router();
 
-router.get("/users")
-router.post("/users", createUser)
+router.get("/users/:id/car", getUserCar)
+router.post("/users", createUserValidator, createUser)
 
 router
     .route("/users/:id")
     .get()
-    .put(updateUser)
+    .put(updateUserValidator, updateUser)
     .delete()
 
 module.exports = router;
